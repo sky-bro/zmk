@@ -140,3 +140,9 @@ config ZMK_BEHAVIOR_SEND_STRING
     default y
     depends on DT_HAS_ZMK_BEHAVIOR_SEND_STRING_ENABLED
     select ZMK_SEND_STRING
+
+config ZMK_BEHAVIOR_REPORT
+    bool
+    default y
+    depends on DT_HAS_ZMK_BEHAVIOR_REPORT_ENABLED
+    select ZMK_SEND_STRING
