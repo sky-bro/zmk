@@ -3,8 +3,6 @@
 
 #include <zephyr/logging/log.h>
 
-// #include <drivers/behavior.h>
-
 #include <drivers/character_map.h>
 #include <drivers/behavior.h>
 #include <zephyr/device.h>
@@ -29,8 +27,9 @@ static void report_battery(const struct zmk_behavior_binding_event *event) {
     char string[80];
     // ZMK_SPLIT_BLE_PERIPHERAL_COUNT
     uint8_t right_battery_level = 0;
-    // TODO: select peripheral
+#if IS_ENABLED(CONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING)
     zmk_split_get_peripheral_battery_level(0, &right_battery_level);
+#endif // IS_ENABLED(CONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING)
     uint8_t index = zmk_keymap_highest_layer_active();
     const char *label = zmk_keymap_layer_name(index);
     snprintf(string, sizeof(string), "Battery: [left: %u%%, right: %u%%] ",
