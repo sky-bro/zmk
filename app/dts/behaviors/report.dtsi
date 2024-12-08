@@ -8,6 +8,9 @@
 / {
     behaviors {
         // Behavior can be invoked on peripherals, so name must be <= 8 characters.
+#if ZMK_BEHAVIOR_OMIT(DEFAULT_REPORT)
+    /omit-if-no-ref/
+#endif
         default_report: default_report {
             compatible = "zmk,behavior-report";
             #binding-cells = <0>;
