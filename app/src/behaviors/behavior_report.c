@@ -11,7 +11,7 @@
 #include <zmk/send_string.h>
 #include <zmk/battery.h>
 #include <zmk/wpm.h>
-#include <zmk/split/bluetooth/central.h>
+#include <zmk/split/central.h>
 #include <zmk/ble.h>
 #include <zmk/keymap.h>
 #include <zmk/endpoints_types.h>
@@ -28,7 +28,7 @@ static void report_battery(const struct zmk_behavior_binding_event *event) {
     // ZMK_SPLIT_BLE_PERIPHERAL_COUNT
     uint8_t right_battery_level = 0;
 #if IS_ENABLED(CONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING)
-    zmk_split_get_peripheral_battery_level(0, &right_battery_level);
+    zmk_split_central_get_peripheral_battery_level(0, &right_battery_level);
 #endif // IS_ENABLED(CONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING)
     uint8_t index = zmk_keymap_highest_layer_active();
     const char *label = zmk_keymap_layer_name(index);
